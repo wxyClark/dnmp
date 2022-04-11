@@ -99,7 +99,7 @@ function printDomains()
     $domains = [
         '<a target="_blank" href="http://docker.localhost.com/" >localhost</a>',
         '<a target="_blank" href="http://www.laravel9.wxy/" >laravel9</a>',
-        '<a target="_blank" href="http://www.lumen9.wxy/" >laravel9</a>',
+        '<a target="_blank" href="http://www.lumen9.wxy/" >lumen9</a>',
         '<a target="_blank" href="http://127.0.0.1:8080" >phpMyAdmin</a>',
         '<a target="_blank" href="http://127.0.0.1:8081" >redisAdmin</a>',
         '<a target="_blank" href="http://127.0.0.1:1234" >mongoAdmin</a>',
