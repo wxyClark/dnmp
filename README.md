@@ -136,7 +136,7 @@ PHP的很多功能都是通过扩展实现，而安装扩展是一个略费时�
 如果要安装更多扩展，请打开你的`.env`文件修改如下的PHP配置，
 增加需要的PHP扩展：
 ```bash
-PHP_EXTENSIONS=pdo_mysql,opcache,redis       # PHP 要安装的扩展列表，英文逗号隔开
+PHP_EXTENSIONS=pdo_mysql,mysqli,mbstring,gd,curl,opcache,redis,unzip,mongodb       # PHP 要安装的扩展列表，英文逗号隔开
 PHP54_EXTENSIONS=opcache,redis                 # PHP 5.4要安装的扩展列表，英文逗号隔开
 ```
 然后重新build PHP镜像。
