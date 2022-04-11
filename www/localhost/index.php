@@ -13,8 +13,13 @@ echo '<li>Redis服务器版本：', getRedisVersion(), '</li>';
 echo '<li>MongoDB服务器版本：', getMongoVersion(), '</li>';
 echo '</ul>';
 
+echo '<h2>导航</h2>';
+printDomains();
+
 echo '<h2>已安装扩展</h2>';
 printExtensions();
+
+phpinfo();
 
 
 /**
@@ -24,7 +29,7 @@ function getMysqlVersion()
 {
     if (extension_loaded('PDO_MYSQL')) {
         try {
-            $dbh = new PDO('mysql:host=mysql;dbname=mysql', 'root', '123456');
+            $dbh = new PDO('mysql:host=mysql5;dbname=mysql', 'root', '123456');
             $sth = $dbh->query('SELECT VERSION() as version');
             $info = $sth->fetch();
         } catch (PDOException $e) {
@@ -82,10 +87,46 @@ function getMongoVersion()
  */
 function printExtensions()
 {
-    echo '<ol>';
-    foreach (get_loaded_extensions() as $i => $name) {
-        echo "<li>", $name, '=', phpversion($name), '</li>';
-    }
-    echo '</ol>';
+    printTable(get_loaded_extensions(), 5);
 }
 
+
+/**
+ * 打印域名导航
+ */
+function printDomains()
+{
+    $domains = [
+        '<a target="_blank" href="http://docker.localhost.com/" >localhost</a>',
+        '<a target="_blank" href="http://www.laravel9.wxy/" >laravel9</a>',
+        '<a target="_blank" href="http://www.lumen9.wxy/" >laravel9</a>',
+        '<a target="_blank" href="http://127.0.0.1:8080" >phpMyAdmin</a>',
+        '<a target="_blank" href="http://127.0.0.1:8081" >redisAdmin</a>',
+        '<a target="_blank" href="http://127.0.0.1:1234" >mongoAdmin</a>',
+        '<a target="_blank" href="http://127.0.0.1:5601" >elk</a>',
+    ];
+    printTable($domains, 3);
+}
+
+/**
+ * 打印表格
+ */
+function printTable($data, $columnNum)
+{
+    echo "<table border=1  cellpadding=30>";
+
+    foreach($data as  $i => $name){
+        $order = $i % $columnNum;
+        if ($order == 0) {
+            echo "<tr>";
+        }
+
+        echo "<td> $i $name</td>";
+
+        if ($order == $columnNum - 1) {
+            echo "</tr>";
+        }
+    }
+
+    echo "</table>";
+}
